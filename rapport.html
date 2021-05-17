@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>rapport.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="rapport-minimax-morpion">Rapport Minimax Morpion</h1>
+<p>© Maxence Raballand, Julio Pique, Valentin Pierrat 2021</p>
+<h2 id="minimax-avec-alpha-beta">Minimax avec alpha-beta</h2>
+<p>L'algorithme de minimax appliqué ici est l'algorithme classique de minimax.</p>
+<p>En plus, nous avons un profondeur maximale pour l'arbre (<code>max_depth</code>) qui permet d'obtenir un bon ratio entre précision et performance.</p>
+<p>A chaque appel récursif à une branche fille, la variable <code>depth</code> qui est initialisé <code>max_depth</code> décroit de 1. Si on a <code>depth</code> à 0, alors on retourne l'heuristique lié au plateau actuel.</p>
+<p>Sinon on applique la suite de minimax. L'algorithme pour <code>maximizingPlayer</code> et l'opposant sont sensiblement les mêmes. L'algorithme est l'algithme classique de minimax à la différence de 2 choses :</p>
+<ul>
+<li>On créé des branches filles à partir de coups déterminés par un énumérateur <code>legal_moves</code> qui prend en paramètre le plateau et le dernier coup joué.</li>
+<li>On test si il y a une victoire pour des coups, et si c'est le cas, nous ne faisons pas d'appel réccursif à minimax mais nous donnons un score très élevé (ou très faible) et on recommence la boucle (qui devrait se terminer rapidement après grâce à l'élagage alpha-beta).</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">minimax</span><span class="hljs-params">(board, depth, alpha, beta, maximizingPlayer, curr, opp, last_played_move, max_depth)</span>:</span>
+  <span class="hljs-comment"># ...</span>
+  <span class="hljs-comment"># Si la profondeur est à 0, on renvoit l'heuristique</span>
+  <span class="hljs-keyword">if</span> depth == <span class="hljs-number">0</span>:
+    <span class="hljs-keyword">return</span> heuristic(board, symbol) * (<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> maximizingPlayer <span class="hljs-keyword">else</span> <span class="hljs-number">-1</span>), <span class="hljs-literal">None</span>
+
+  <span class="hljs-keyword">if</span> maximizingPlayer:
+    maxEval = -np.inf
+    best_move = <span class="hljs-literal">None</span>
+    <span class="hljs-keyword">for</span> col, line <span class="hljs-keyword">in</span> legal_moves(board, last_played_move):
+      board[line, col] = symbol
+      <span class="hljs-comment"># on ne vérifie la victoire que si plus de 3 symbole joués</span>
+      <span class="hljs-keyword">if</span> np.sum(board == curr) &gt; <span class="hljs-number">3</span> <span class="hljs-keyword">and</span> is_win(board, symbol):
+          eval = <span class="hljs-number">100000</span> / (max_depth - depth + <span class="hljs-number">1</span>) ** <span class="hljs-number">2</span>
+      <span class="hljs-keyword">else</span>:
+        eval, _ = minimax(board, depth - <span class="hljs-number">1</span>, alpha, beta, <span class="hljs-literal">False</span>, curr, opp, (col, line), max_depth)
+        eval /= (max_depth - depth + <span class="hljs-number">1</span>) ** <span class="hljs-number">2</span>
+      <span class="hljs-keyword">if</span> eval &gt; maxEval:
+        best_move = (col, line)
+        maxEval = eval
+      alpha = max(alpha, eval)
+      board[line, col] = <span class="hljs-number">0</span>
+      <span class="hljs-comment"># élagage alpha-beta</span>
+      <span class="hljs-keyword">if</span> beta &lt;= alpha:
+        <span class="hljs-keyword">break</span>
+    <span class="hljs-keyword">return</span> maxEval, best_move
+
+  <span class="hljs-keyword">else</span>:
+    <span class="hljs-comment"># ...</span>
+    <span class="hljs-comment"># même chose pour l'adversaire (avec scores négatifs)</span>
+
+</div></code></pre>
+<h2 id="lheuristique">L'heuristique</h2>
+<p>Pour l'heuristique, on a compté le nombre de symbole alignés qu'on a enregistré dans des compteurs puis on donne un certain score en fonction du nombre de symboles alignés.</p>
+<p>L'heuristique n'est pas complexe mais efficace. Elle a été optimisé pour faire le moins de boucle possible et le code n'est donc pas très lisible.</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Valeurs attribués au nombre de symboles alignés</span>
+<span class="hljs-comment"># pour l'heuristique</span>
+VALUES = (
+    <span class="hljs-number">1</span>, <span class="hljs-comment">#1</span>
+    <span class="hljs-number">10</span>, <span class="hljs-comment">#2</span>
+    <span class="hljs-number">100</span> <span class="hljs-comment">#3</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">heuristic</span><span class="hljs-params">(board, symbol)</span>:</span>
+  <span class="hljs-keyword">global</span> BOARD_SIZE
+  <span class="hljs-keyword">global</span> BOARD_SIZE_1
+  <span class="hljs-keyword">global</span> BOARD_SIZE_4
+  <span class="hljs-keyword">global</span> BOARD_SIZE_5
+  score = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> prange(BOARD_SIZE):
+    <span class="hljs-comment"># compteurs pour chaque joeur et direction</span>
+    cOppLine, cPlayerLine, cOppCol, cPlayerCol = <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
+    cOppDiag, cPlayerDiag = [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
+    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> prange(BOARD_SIZE):
+      <span class="hljs-comment"># line</span>
+      tempScore, cOppLine, cPlayerLine = define_score(board[i, j], cOppLine, cPlayerLine, symbol)
+      score += tempScore
+      <span class="hljs-comment"># col</span>
+      tempScore, cOppCol, cPlayerCol = define_score(board[j, i], cOppCol, cPlayerCol, symbol)
+      score += tempScore
+
+      <span class="hljs-comment"># \ diag </span>
+      <span class="hljs-comment"># from trace to left [0]</span>
+      <span class="hljs-keyword">if</span> j + i &lt; BOARD_SIZE_4:
+        tempScore, cOppDiag[<span class="hljs-number">0</span>], cPlayerDiag[<span class="hljs-number">0</span>] = define_score(board[j + i, j], cOppDiag[<span class="hljs-number">0</span>], cPlayerDiag[<span class="hljs-number">0</span>], symbol)
+        score += tempScore
+      <span class="hljs-comment"># from trace + 1 to right [1]</span>
+      <span class="hljs-keyword">if</span> j + i &lt; BOARD_SIZE_5:
+        tempScore, cOppDiag[<span class="hljs-number">1</span>], cPlayerDiag[<span class="hljs-number">1</span>] = define_score(board[j, j + i + <span class="hljs-number">1</span>], cOppDiag[<span class="hljs-number">1</span>], cPlayerDiag[<span class="hljs-number">1</span>], symbol)
+        score += tempScore
+      <span class="hljs-comment"># / diag</span>
+      <span class="hljs-comment"># from / to left [2]</span>
+      <span class="hljs-keyword">if</span> BOARD_SIZE - i - j &gt;= <span class="hljs-number">1</span>:
+        tempScore, cOppDiag[<span class="hljs-number">2</span>], cPlayerDiag[<span class="hljs-number">2</span>] = define_score(board[BOARD_SIZE - <span class="hljs-number">1</span> - j - i, j], cOppDiag[<span class="hljs-number">2</span>], cPlayerDiag[<span class="hljs-number">2</span>], symbol)
+        score += tempScore
+      <span class="hljs-comment"># from / to right [3]</span>
+      <span class="hljs-keyword">if</span> i + j &lt; BOARD_SIZE_1:
+        tempScore, cOppDiag[<span class="hljs-number">3</span>], cPlayerDiag[<span class="hljs-number">3</span>] = define_score(board[BOARD_SIZE - j - <span class="hljs-number">1</span>, j + i + <span class="hljs-number">1</span>], cOppDiag[<span class="hljs-number">3</span>], cPlayerDiag[<span class="hljs-number">3</span>], symbol)
+        score += tempScore
+  <span class="hljs-keyword">return</span> score
+
+<span class="hljs-comment"># prend en paramètre des compteurs, les modifie et attribu un score ou non</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">define_score</span><span class="hljs-params">(case, countOpp, countPlayer, symbol)</span>:</span>
+  <span class="hljs-keyword">global</span> VALUES
+  score = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">if</span> case == <span class="hljs-number">0</span>:
+    <span class="hljs-keyword">if</span> countOpp != <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> countPlayer != <span class="hljs-number">0</span>:
+      score = VALUES[min(max(countOpp, countPlayer), <span class="hljs-number">4</span>) - <span class="hljs-number">1</span>] * (<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> countPlayer != <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">-1</span>)
+      countOpp = countPlayer = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">elif</span> case == symbol:
+    countPlayer += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">if</span> countOpp != <span class="hljs-number">0</span>:
+      score = -VALUES[min(countOpp, <span class="hljs-number">4</span>) - <span class="hljs-number">1</span>]
+      countOpp = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">else</span>:
+    countOpp += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">if</span> countPlayer != <span class="hljs-number">0</span>:
+      score = VALUES[min(<span class="hljs-number">4</span>, countPlayer) - <span class="hljs-number">1</span>]
+      countPlayer = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">return</span> score, countOpp, countPlayer
+
+</div></code></pre>
+<h2 id="legal-moves">Legal Moves</h2>
+<p>La méthode legal_moves retourne tout les coups qui peuvent être joué. Ici, on prend tout les coups qui ont été joué et on recupère les coordonnées des cases autour seulement.</p>
+<p>Aussi on tri ces coups en fonction de leur distance au dernier coup joué. On pense que les meilleurs coups (la plupart du temps) sont ceux autour du dernier coup joué et on aura donc un élagage alpha-beta plus efficace.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">legal_moves</span><span class="hljs-params">(board, last_played_move)</span>:</span>
+  lines, cols = np.where(board != <span class="hljs-number">0</span>)
+  col, line = last_played_move
+  <span class="hljs-comment"># on trie les coups possible en fonction</span>
+  <span class="hljs-comment"># de leur distance au dernier coup joué</span>
+  order = np.argsort(np.floor(np.sqrt((cols - col) ** <span class="hljs-number">2</span> + (lines - line) ** <span class="hljs-number">2</span>)))
+  lines = lines[order]
+  cols = cols[order]
+  done = []
+  <span class="hljs-keyword">for</span> line, col <span class="hljs-keyword">in</span> zip(lines, cols):
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> prange(max(<span class="hljs-number">0</span>, line - <span class="hljs-number">1</span>), min(BOARD_SIZE, line + <span class="hljs-number">2</span>)):
+      <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> prange(max(<span class="hljs-number">0</span>, col - <span class="hljs-number">1</span>), min(BOARD_SIZE, col + <span class="hljs-number">2</span>)):
+        <span class="hljs-comment"># on retourne les coups s'il n'ont pas déjà été fait</span>
+        <span class="hljs-keyword">if</span> (i, j) <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> done <span class="hljs-keyword">and</span> board[i, j] == <span class="hljs-number">0</span>:
+          <span class="hljs-keyword">yield</span> j, i
+          done.append((i, j))
+</div></code></pre>
+<h2 id="m%C3%A9thode-iswin">Méthode is_win</h2>
+<p>Cette méthode pour vérifier la victoire prend en paramètre le symbole du dernier joueur ayant joué. Cela permet de sauver du temps car le joueur qui a joué est le seul qui peut gagner lorsque la méthode est appelé.</p>
+<p>Aussi, au lieu de vérifié toutes les case du plateau, on fait une boucle sur un énumérateur <code>played_move_by_symbol</code> qui prend en paramètre le plateau et le symbole du joueur qui renvoit tout les coups qui ont été joué uniquement par le joueur. Ainsi on à une méthode beacoup moins couteuse, surtout dans les premiers coups.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_win</span><span class="hljs-params">(board, symbol)</span>:</span>
+  <span class="hljs-keyword">global</span> BOARD_SIZE
+  <span class="hljs-keyword">global</span> BOARD_SIZE_3
+  <span class="hljs-keyword">for</span> line, col <span class="hljs-keyword">in</span> played_move_by_symbol(board, symbol):
+      <span class="hljs-comment"># line</span>
+      <span class="hljs-keyword">if</span> line &lt; BOARD_SIZE_3 <span class="hljs-keyword">and</span> (board[line:line+<span class="hljs-number">4</span>, col]==symbol).all():
+          <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+      <span class="hljs-comment">#col</span>
+      <span class="hljs-keyword">if</span> col &lt; BOARD_SIZE_3 <span class="hljs-keyword">and</span> (board[line, col:col+<span class="hljs-number">4</span>]==symbol).all():
+          <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+      <span class="hljs-comment"># \ diagonal</span>
+      <span class="hljs-keyword">if</span> line &lt; BOARD_SIZE_3 <span class="hljs-keyword">and</span> col &lt; BOARD_SIZE_3 <span class="hljs-keyword">and</span> board[line, col] == board[line+<span class="hljs-number">1</span>, col+<span class="hljs-number">1</span>] == board[line+<span class="hljs-number">2</span>, col+<span class="hljs-number">2</span>] == board[line+<span class="hljs-number">3</span>, col+<span class="hljs-number">3</span>] == symbol:
+          <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+      <span class="hljs-comment"># / diagonal</span>
+      <span class="hljs-keyword">if</span> col &gt; <span class="hljs-number">2</span> <span class="hljs-keyword">and</span> line &lt; BOARD_SIZE_3 <span class="hljs-keyword">and</span> board[line, col] == board[line+<span class="hljs-number">1</span>, col<span class="hljs-number">-1</span>] == board[line+<span class="hljs-number">2</span>, col<span class="hljs-number">-2</span>] == board[line+<span class="hljs-number">3</span>, col<span class="hljs-number">-3</span>] == symbol:
+          <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+      
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">played_move_by_symbol</span><span class="hljs-params">(board, symbol)</span>:</span>
+  <span class="hljs-keyword">global</span> BOARD_SIZE
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> prange(BOARD_SIZE):
+    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> prange(BOARD_SIZE):
+      <span class="hljs-keyword">if</span> board[i, j] == symbol:
+        <span class="hljs-keyword">yield</span> i, j
+</div></code></pre>
+<h2 id="compilation-du-code-python">Compilation du code python</h2>
+<p>Nous sommes astreint à utiliser Google Collab pour des soucis d'égalité des ressources et donc à coder en python. Nous avons cependant réussi à compiler le code avec la bibliothèque numba. Numba compile le code en FORTRAN il me semble ce qui rend le code 50 fois plus rapide.</p>
+<p>Tout d'abord, toutes les variables global sont des constantes au moment de la compilation et donc avoir des variables globales n'est pas possible (dictionnaire par exemple) Nous devons donc passer ce genre de variables en paramètre.</p>
+<p>Aussi, numba ne compile qu'un nombre d'opérations limités et il faut donc utiliser des fonctions basiques (certaines fonctions numpy sont prises en charge).</p>
+<p>Nous utilisons l'énumérateur <code>prange</code> de <em>numba</em> à la place de l'énumérateur <code>range</code> pour permettre une parralélisation des opérations.</p>
+<p>Toutes les fonctions appelé à l'intérieur des fonctions compilé doivent être elle-même des fonctions compilés.</p>
+<p>Pour spécifier les fonctions à compiler, on ajoute le décorateur <code>@njit</code> de <em>numba</em> au début des fonctions.</p>
+<p>On a donc une structure pour la compilation qui est la suivante :</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> numba <span class="hljs-keyword">import</span> njit, prange
+
+<span class="hljs-meta">@njit # decorator for compiling</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">played_move_by_symbol</span><span class="hljs-params">(board, symbol)</span>:</span>
+  <span class="hljs-keyword">global</span> BOARD_SIZE <span class="hljs-comment"># compile time constant</span>
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> prange(BOARD_SIZE): <span class="hljs-comment"># prange enumerator</span>
+    <span class="hljs-comment"># ...</span>
+    <span class="hljs-comment"># only simple operations are allowed</span>
+
+<span class="hljs-meta">@njit</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">minimax</span><span class="hljs-params">(board, depth, alpha, beta, maximizingPlayer, curr, opp, last_played_move, max_depth = <span class="hljs-number">0</span>)</span>:</span>
+  
+  <span class="hljs-comment"># ...</span>
+  <span class="hljs-keyword">if</span> depth == <span class="hljs-number">0</span>:
+    <span class="hljs-keyword">return</span> heuristic(board, symbol) * (<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> maximizingPlayer <span class="hljs-keyword">else</span> <span class="hljs-number">-1</span>), <span class="hljs-literal">None</span> <span class="hljs-comment"># use of compiled function</span>
+
+  <span class="hljs-keyword">if</span> maximizingPlayer:
+    <span class="hljs-comment"># ...</span>
+    <span class="hljs-keyword">for</span> col, line <span class="hljs-keyword">in</span> legal_moves(board, last_played_move): <span class="hljs-comment"># compiled enumerator</span>
+      board[line, col] = symbol
+      <span class="hljs-keyword">if</span> np.sum(board == curr) &gt; <span class="hljs-number">3</span> <span class="hljs-keyword">and</span> is_win(board, symbol): <span class="hljs-comment"># compiled function</span>
+          <span class="hljs-comment"># ...</span>
+</div></code></pre>
+
+</body>
+</html>
