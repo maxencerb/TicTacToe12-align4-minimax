@@ -186,7 +186,7 @@ def played_move_by_symbol(board, symbol):
 
 ## Compilation du code python
 
-Nous sommes astreint à utiliser Google Collab pour des soucis d'égalité des ressources et donc à coder en python. Nous avons cependant réussi à compiler le code avec la bibliothèque numba. Numba compile le code en FORTRAN il me semble ce qui rend le code 50 fois plus rapide.
+Nous sommes astreint à utiliser Google Collab pour des soucis d'égalité des ressources et donc à coder en python. Nous avons cependant réussi à compiler le code avec la bibliothèque numba. Numba compile le code en Assembly avec des vitesses similaires à C ou FORTRAN il me semble ce qui rend le code 50 fois plus rapide.
 
 Tout d'abord, toutes les variables global sont des constantes au moment de la compilation et donc avoir des variables globales n'est pas possible (dictionnaire par exemple) Nous devons donc passer ce genre de variables en paramètre.
 
